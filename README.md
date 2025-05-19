@@ -1,75 +1,81 @@
-My Portfolio - React + Vite
-This is my personal portfolio website built using React and Vite. It showcases my projects, skills, and experience. The website is designed to be responsive and performs well across all devices. The project is deployed on GitHub Pages.
+# 💼 My Personal Portfolio – React + Vite
 
-Technologies Used:
-React: A JavaScript library for building user interfaces.
+This is my personal portfolio website built using **React** and **Vite**. It showcases my **projects**, **skills**, and **experience** in a modern and responsive design. The site is optimized for performance and mobile devices and deployed via **GitHub Pages**.
 
-Vite: A fast build tool and development server.
+🌐 **Live Website**: [https://jiregnaworku.github.io/Personal-portfolio](https://jiregnaworku.github.io/Personal-portfolio)
 
-ESLint: JavaScript linting to ensure code quality.
+---
 
-gh-pages: For deploying the project to GitHub Pages.
+## 🚀 Technologies Used
 
-Project Setup
-This project uses Vite as the build tool and React for the front-end. Here’s a quick guide to get started.
+- **React** – Frontend JavaScript library for building UI components.
+- **Vite** – Fast and lightweight build tool for modern web development.
+- **ESLint** – Linter for identifying and fixing JavaScript code issues.
+- **gh-pages** – For deploying the site to GitHub Pages.
+- **EmailJS** – For sending emails from the contact form.
 
-1. Clone the repository
-bash
-Copy
-Edit
-git clone https://github.com/jiregnaworku/portfolio.git
+---
+
+## 📁 Project Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/jiregnaworku/Personal-portfolio.git
 cd portfolio
-2. Install dependencies
-Run the following command to install the required dependencies:
-
+2. Install Dependencies
 bash
 Copy
 Edit
 npm install
-3. Development Mode
-To run the development server, use:
-
+3. Run in Development Mode
 bash
 Copy
 Edit
 npm run dev
-This will start the Vite development server, and you can view the project at http://localhost:3000/.
+Open your browser and navigate to http://localhost:3000/ to view the site.
 
-4. Building for Production
-To create a production-ready build of the app, run:
-
+4. Build for Production
 bash
 Copy
 Edit
 npm run build
-This will create a dist/ directory with the optimized production build.
+This command generates an optimized production build inside the dist/ folder.
 
 5. Deploy to GitHub Pages
-To deploy the app to GitHub Pages, run the following:
-
 bash
 Copy
 Edit
 npm run deploy
-This will push the build files to the gh-pages branch and make the website live at:
+This pushes the build files to the gh-pages branch, making the site live at:
 
-arduino
-Copy
-Edit
-https://jiregnaworku.github.io/portfolio
-Features:
-Responsive Design: The website is designed to adapt to various screen sizes, making it mobile-friendly.
+👉 https://jiregnaworku.github.io/portfolio
 
-Interactive Sections: Includes animated sections for displaying projects and contact information.
+✨ Features
+📱 Responsive Design – Works seamlessly across desktops, tablets, and smartphones.
 
-Contact Form: An integrated contact form powered by EmailJS to get in touch.
+🧩 Interactive Sections – Includes animations for skills, projects, and contact information.
 
-Smooth Scrolling: Sections scroll smoothly when clicked from the navigation menu.
+📬 Contact Form – Integrated form using EmailJS to receive messages.
 
-ESLint Configuration
-To maintain clean and error-free code, this project includes ESLint configured for best practices.
+🔗 Smooth Navigation – Navigation links smoothly scroll to different sections.
 
-If you're planning to expand the application or work in a larger team, consider integrating TypeScript for better type safety and linting. You can follow the TypeScript setup guide for integrating TypeScript.
+✅ Linting with ESLint – Enforces code quality and consistency.
 
-License
-This project is open-source and available under the MIT License.
+📌 Notes
+For better maintainability and scalability:
+
+Consider adding TypeScript for static typing and development safety.
+
+Customize the ESLint rules and pre-commit hooks for a stronger CI/CD workflow.
+
+Explore integrating unit testing libraries like Jest or React Testing Library if needed.
+
+🧑‍💻 Author
+Jiregna Worku Abetu
+📧 jiregna123w@gmail.com
+📞 +251 918 348 141 / +251 998 033 444
+🌍 Addis Ababa, Ethiopia
+🔗 GitHub | Portfolio
+
+Built with ❤️ using React and Vite.
