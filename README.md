@@ -24,28 +24,22 @@ This is my personal portfolio website built using **React** and **Vite**. It sho
 git clone https://github.com/jiregnaworku/Personal-portfolio.git
 cd portfolio
 2. Install Dependencies
-bash
-Copy
-Edit
+
 npm install
 3. Run in Development Mode
-bash
-Copy
-Edit
+
+
 npm run dev
 Open your browser and navigate to http://localhost:3000/ to view the site.
 
 4. Build for Production
-bash
-Copy
-Edit
+
 npm run build
 This command generates an optimized production build inside the dist/ folder.
 
 5. Deploy to GitHub Pages
-bash
-Copy
-Edit
+
+
 npm run deploy
 This pushes the build files to the gh-pages branch, making the site live at:
 
