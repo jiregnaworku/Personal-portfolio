@@ -33,6 +33,9 @@ const Home = () => {
             <span>🟦 CSS</span>
             <span>🟩 Node.js</span>
             <span>🍃 MongoDB</span>
+            <span>🛠️ Express.js</span>
+            <span>📦 Git & GitHub</span>
+            <span>📱 Flutter</span>
           </div>
         </div>
       </div>

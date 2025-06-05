@@ -21,7 +21,7 @@ const Resume = () => {
               <li>
                 <strong>BSc in Software Engineering</strong>
                 <br />
-                Injibara University (2021 - 2025)
+                Injibara University (2021 - 2026)
               </li>
             </ul>
 
