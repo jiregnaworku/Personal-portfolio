@@ -1,47 +1,94 @@
-import React, { useState } from "react";
-import "../styles/Navbar.css";
+import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  return (
-    <nav className="navbar">
-      <div className="logo">Jiregna.Dev</div>
+  const navLinks = [
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#project", label: "Projects" },
+    { href: "#resume", label: "Resume" },
+    { href: "#contact", label: "Contact" },
+  ];
 
-      <div className="hamburger" onClick={toggleMenu}>
-        {isOpen ? <FaTimes /> : <FaBars />}
+  return (
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled 
+        ? 'glass-effect shadow-lg' 
+        : 'bg-transparent'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <a 
+              href="#home" 
+              className="text-2xl font-bold text-white hover:text-primary-200 transition-colors duration-300"
+            >
+              Jiregna.<span className="text-primary-300">Dev</span>
+            </a>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-white hover:text-primary-300 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 relative group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-300 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="text-white hover:text-primary-300 focus:outline-none focus:text-primary-300 transition-colors duration-300"
+            >
+              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
+        </div>
       </div>
 
-      <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-        <li>
-          <a href="#home" onClick={toggleMenu}>
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="#about" onClick={toggleMenu}>
-            About
-          </a>
-        </li>
-        <li>
-          <a href="#Projects" onClick={toggleMenu}>
-            Projects
-          </a>
-        </li>
-        <li>
-          <a href="#resume" onClick={toggleMenu}>
-            Resume
-          </a>
-        </li>
-        <li>
-          <a href="#contact" onClick={toggleMenu}>
-            Contact
-          </a>
-        </li>
-      </ul>
+      {/* Mobile Navigation */}
+      <div className={`md:hidden transition-all duration-300 ease-in-out ${
+        isOpen 
+          ? 'max-h-96 opacity-100' 
+          : 'max-h-0 opacity-0'
+      } overflow-hidden`}>
+        <div className="glass-effect px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={toggleMenu}
+              className="text-white hover:text-primary-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 };

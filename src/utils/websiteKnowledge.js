@@ -1,148 +1,51 @@
-// This utility extracts and processes website content for the chatbot
+// This utility provides structured content for the chatbot
 
-// Extract structured content from the page
-const extractStructuredContent = () => {
-  try {
-    const content = {
-      title: document.title.replace(/- Personal Portfolio$/, '').trim(),
-      name: '',
-      role: '',
-      skills: [],
-      projects: [],
-      experience: [],
-      about: '',
-      contact: {},
-      sections: {}
-    };
-
-    // Extract name and role from the hero section
-    const heroSection = document.querySelector('.hero, header, section:first-of-type');
-    if (heroSection) {
-      const nameElement = heroSection.querySelector('h1, .name, .hero-title');
-      if (nameElement) content.name = nameElement.textContent.trim();
-      
-      const roleElement = heroSection.querySelector('h2, .role, .hero-subtitle');
-      if (roleElement) content.role = roleElement.textContent.trim();
-    }
-
-    // Extract about section
-    const aboutSection = document.querySelector('#about, [data-section="about"], section:nth-of-type(2)');
-    if (aboutSection) {
-      content.about = aboutSection.textContent.trim()
-        .replace(/\s+/g, ' ')
-        .substring(0, 500);
-    }
-
-    // Extract skills
-    const skillsSection = document.querySelector('#skills, [data-section="skills"], .skills');
-    if (skillsSection) {
-      skillsSection.querySelectorAll('.skill, [class*="skill-"], .tech-stack span, li, .skill-item')
-        .forEach(skill => {
-          const skillText = skill.textContent.trim();
-          if (skillText && !content.skills.includes(skillText)) {
-            content.skills.push(skillText);
-          }
-        });
-    }
-
-    // Extract projects
-    const projectsSection = document.querySelector('#projects, [data-section="projects"], .projects');
-    if (projectsSection) {
-      projectsSection.querySelectorAll('.project, [class*="project-"], article, .project-card')
-        .forEach(project => {
-          const title = project.querySelector('h3, h4, .project-title')?.textContent.trim() || 'Project';
-          const description = project.querySelector('p, .description, .project-desc')?.textContent.trim() || '';
-          const link = project.querySelector('a[href]')?.getAttribute('href') || '';
-          
-          if (title || description) {
-            content.projects.push({
-              title,
-              description: description.substring(0, 150) // Limit description length
-            });
-          }
-        });
-    }
-
-
-    // Extract contact info (only email and phone)
-    const contactSection = document.querySelector('#contact, [data-section="contact"]');
-    if (contactSection) {
-      const emailLink = contactSection.querySelector('a[href^="mailto:"]');
-      if (emailLink) {
-        content.contact.email = emailLink.href.replace('mailto:', '');
-      }
-      const phoneLink = contactSection.querySelector('a[href^="tel:"]');
-      if (phoneLink) {
-        content.contact.phone = phoneLink.href.replace('tel:', '');
-      }
-    }
-
-    return content;
-  } catch (error) {
-    console.error('Error extracting structured content:', error);
-    return null;
-  }
-};
-
-// Process content for the AI
-const processContent = (content) => {
-  if (!content) return [];
-
-  const knowledge = [];
-
-  // Add basic info
-  if (content.name) knowledge.push(`Name: ${content.name}`);
-  if (content.role) knowledge.push(`Role: ${content.role}`);
-  if (content.title) knowledge.push(`Website: ${content.title}`);
-
-  // Add about section
-  if (content.about) {
-    knowledge.push(`About: ${content.about}`);
-  }
-
-  // Add skills
-  if (content.skills.length > 0) {
-    knowledge.push(`Skills: ${content.skills.join(', ')}`);
-  }
-
-  // Add projects
-  if (content.projects.length > 0) {
-    knowledge.push('\nProjects:');
-    content.projects.forEach((project, index) => {
-      knowledge.push(`- ${project.title}: ${project.description.substring(0, 250)}`);
-      if (project.link) knowledge.push(`  Link: ${project.link}`);
-    });
-  }
-
-  // Add experience
-  if (content.experience.length > 0) {
-    knowledge.push('\nExperience:');
-    content.experience.forEach(exp => {
-      knowledge.push(`- ${exp.role} at ${exp.company} (${exp.duration}): ${exp.description}`);
-    });
-  }
-
-  // Add contact info
-  if (Object.keys(content.contact).length > 0) {
-    knowledge.push('\nContact Information:');
-    if (content.contact.email) knowledge.push(`- Email: ${content.contact.email}`);
-    if (content.contact.phone) knowledge.push(`- Phone: ${content.contact.phone}`);
-    if (content.contact.linkedin) knowledge.push(`- LinkedIn: ${content.contact.linkedin}`);
-    if (content.contact.github) knowledge.push(`- GitHub: ${content.contact.github}`);
-  }
+// Get knowledge from the current page
+const getCurrentPageKnowledge = async () => {
+  const knowledge = [
+    "Name: Jiregna Worku",
+    "Role: Frontend Web and Mobile App Developer",
+    "Website: Jiregna's Portfolio",
+    
+    "About: I'm Jiregna Worku, a 4th-year Software Engineering student at Injibara University. I specialize in creating visually appealing and user-friendly web and mobile applications. With a strong foundation in React, JavaScript, Node.js, and modern UI/UX practices, I enjoy solving problems and building products that make a difference.",
+    
+    "Education: BSc in Software Engineering at Injibara University (2021 - 2026)",
+    
+    "Skills: React.js, React Native, JavaScript, HTML, CSS, Tailwind CSS, Node.js, Express.js, MongoDB, Flutter, Git & GitHub",
+    
+    "Projects:",
+    "1. Online Coffee Shop (Afaan Oromoo) (Completed)",
+    "   Description: A responsive online coffee shop web app built for Afaan Oromoo speakers. Features product listings, cart, and order management.",
+    "   Technologies: HTML, CSS, JavaScript",
+    "   Link: https://jiregnaworku.github.io/Online-coffee-shop/",
+    
+    "2. House Rental Management System (Ongoing - Internship)",
+    "   Description: A full-stack MERN web app for managing rental properties. Includes landlord/tenant login, rental forms, payments, and admin dashboards.",
+    "   Technologies: React, Node.js, MongoDB, Express",
+    
+    "3. Kids Learning Application (Ongoing)",
+    "   Description: A colorful and engaging app for kids to learn alphabets, numbers, colors, and more. Built with Flutter and includes dark mode, parent lock, and local storage features.",
+    "   Technologies: Flutter, Dart",
+    "   Link: https://github.com/jiregnaworku/kids_learning_app",
+    
+    "Experience:",
+    "- Frontend Developer Intern at OICT Solution (2024 - Present)",
+    "  Location: Addis Ababa, Ethiopia",
+    "  Description: Working on House Rental Management System using MERN stack and React Native.",
+    
+    "- Freelance Developer at Personal Projects (2023 - Present)",
+    "  Location: Remote",
+    "  Description: Building web and mobile applications including Online Coffee Shop and Kids Learning App.",
+    
+    "Contact Information:",
+    "- Email: jiregna123w@gmail.com",
+    "- Phone: +251 918 348 141",
+    "- Telegram: @jiroow",
+    "- GitHub: https://github.com/jiregnaworku",
+    "- LinkedIn: https://www.linkedin.com/in/jiregna-worku-5519302aa"
+  ];
 
   return knowledge;
 };
 
-// Get knowledge from the current page
-const getCurrentPageKnowledge = async () => {
-  try {
-    const structuredContent = extractStructuredContent();
-    return processContent(structuredContent);
-  } catch (error) {
-    console.error('Error getting page knowledge:', error);
-    return [];
-  }
-};
-
-export { getCurrentPageKnowledge };
+export { getCurrentPageKnowledge }; 

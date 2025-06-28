@@ -3,13 +3,12 @@ import { IoSend } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import { FaRobot } from 'react-icons/fa';
 import { getCurrentPageKnowledge } from '../../utils/websiteKnowledge';
-import '../../Styles/Chatbot.css';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { 
-      text: "Hi there! I'm your AI assistant. You can ask me anything about Jiregna's portfolio, skills, or experience. How can I help you today?", 
+      text: "Hi! I'm here to help you learn about Jiregna's portfolio. Ask me anything about his skills, projects, or experience!", 
       sender: 'bot' 
     }
   ]);
@@ -51,7 +50,7 @@ const Chatbot = () => {
       const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
       
       if (!apiKey) {
-        throw new Error('OpenRouter API key not found. Please set VITE_OPENROUTER_API_KEY in your .env file');
+        throw new Error('API key not configured. To enable the chatbot: 1) Get a free API key from https://openrouter.ai/ 2) Create a .env file in your project root 3) Add VITE_OPENROUTER_API_KEY=your_api_key_here');
       }
 
       // Get structured content for the system prompt
@@ -76,10 +75,16 @@ You should answer questions based on the following information about the portfol
 Be concise and helpful. If you don't know the answer, say so.\n\n` +
               `PORTFOLIO CONTEXT:\n${structuredContent.join('\n')}\n\n` +
               `GUIDELINES:\n` +
+              `- Keep responses concise and to the point\n` +
               `- Only answer questions about the portfolio owner, their skills, projects, and experience\n` +
               `- Be professional but friendly in your responses\n` +
               `- If asked about skills or projects, list the most relevant ones from the context\n` +
-              `- For contact information, only provide what's explicitly mentioned in the context`
+              `- For contact information, only provide what's explicitly mentioned in the context\n` +
+              `- If someone just says "hey" or "hello", give a brief, friendly greeting like "Hey! How can I help you learn about Jiregna's work?"\n` +
+              `- Match the tone and length of the user's message\n` +
+              `- Don't provide information unless specifically asked\n` +
+              `- When asked about projects, mention the specific projects listed in the context\n` +
+              `- When asked about skills, mention the specific skills listed in the context`
             },
             {
               role: 'user',
@@ -136,34 +141,45 @@ Be concise and helpful. If you don't know the answer, say so.\n\n` +
   };
 
   return (
-    <div className={`chatbot-container ${isOpen ? 'open' : ''}`}>
+    <div className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${isOpen ? 'w-96 h-[500px]' : 'w-16 h-16'}`}>
       {isOpen ? (
-        <div className="chat-window">
-          <div className="chat-header">
-            <h3>AI Assistant</h3>
-            <button className="close-btn" onClick={toggleChat}>
-              <IoMdClose />
+        <div className="w-full h-full bg-white dark:bg-dark-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-dark-700 flex flex-col">
+          {/* Chat Header */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-dark-700 bg-primary-600 text-white rounded-t-2xl">
+            <h3 className="font-semibold text-lg">AI Assistant</h3>
+            <button 
+              onClick={toggleChat}
+              className="p-2 hover:bg-primary-700 rounded-lg transition-colors duration-200"
+            >
+              <IoMdClose size={20} />
             </button>
           </div>
-          <div className="messages">
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message, index) => {
-              // Create a unique key using index and first few chars of message
               const messageKey = `msg-${index}-${message.text.substring(0, 10).replace(/\s+/g, '-')}`;
               
               return (
                 <React.Fragment key={messageKey}>
                   {message.sender === 'typing' ? (
-                    <div className="message bot">
-                      <div className="typing-indicator">
-                        <div className="typing-dot"></div>
-                        <div className="typing-dot"></div>
-                        <div className="typing-dot"></div>
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 dark:bg-dark-700 rounded-2xl px-4 py-3 max-w-xs">
+                        <div className="flex space-x-1">
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                        </div>
                       </div>
                     </div>
                   ) : (
-                    <div className={`message ${message.sender}`}>
-                      <div className="message-content">
-                        {message.text}
+                    <div className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`rounded-2xl px-4 py-3 max-w-xs ${
+                        message.sender === 'user' 
+                          ? 'bg-primary-600 text-white' 
+                          : 'bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-gray-100'
+                      }`}>
+                        <div className="text-sm">{message.text}</div>
                       </div>
                     </div>
                   )}
@@ -172,23 +188,34 @@ Be concise and helpful. If you don't know the answer, say so.\n\n` +
             })}
             <div ref={messagesEndRef} />
           </div>
-          <form onSubmit={handleSendMessage} className="message-form">
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              required
-            />
-            <button type="submit" className="send-btn">
-              <IoSend />
-            </button>
+
+          {/* Message Form */}
+          <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-200 dark:border-dark-700">
+            <div className="flex space-x-2">
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Type your message..."
+                className="flex-1 px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-dark-700 text-gray-900 dark:text-gray-100"
+                required
+              />
+              <button 
+                type="submit" 
+                className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              >
+                <IoSend size={18} />
+              </button>
+            </div>
           </form>
         </div>
       ) : (
-        <button className="chat-toggle" onClick={toggleChat}>
-          <FaRobot className="chat-icon" />
+        <button 
+          onClick={toggleChat}
+          className="w-16 h-16 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
+        >
+          <FaRobot size={24} />
         </button>
       )}
     </div>

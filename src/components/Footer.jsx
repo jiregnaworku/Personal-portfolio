@@ -1,56 +1,101 @@
 import React from "react";
 import { Link } from "react-scroll";
-import { FaGithub, FaLinkedin, FaEnvelope, FaTelegram } from "react-icons/fa";
-import "../styles/Footer.css";
+import { FaGithub, FaLinkedin, FaEnvelope, FaTelegram, FaHeart } from "react-icons/fa";
 
 const Footer = () => {
+  const footerLinks = [
+    { to: "home", label: "Home" },
+    { to: "about", label: "About" },
+    { to: "project", label: "Projects" },
+    { to: "resume", label: "Resume" },
+    { to: "contact", label: "Contact" },
+  ];
+
+  const socialLinks = [
+    {
+      href: "https://github.com/jiregnaworku",
+      icon: FaGithub,
+      label: "GitHub"
+    },
+    {
+      href: "https://www.linkedin.com/in/jiregna-worku-5519302aa",
+      icon: FaLinkedin,
+      label: "LinkedIn"
+    },
+    {
+      href: "mailto:jiregna123w@gmail.com",
+      icon: FaEnvelope,
+      label: "Email"
+    },
+    {
+      href: "https://t.me/jiroow",
+      icon: FaTelegram,
+      label: "Telegram"
+    }
+  ];
+
   return (
-    <footer className="footer">
-      <div className="footer-links">
-        <Link to="home" smooth={true} duration={500}>
-          Home
-        </Link>
-        <Link to="about" smooth={true} duration={500}>
-          About
-        </Link>
-        <Link to="projects" smooth={true} duration={500}>
-          Projects
-        </Link>
-        <Link to="contact" smooth={true} duration={500}>
-          Contact
-        </Link>
-        <Link to="resume" smooth={true} duration={500}>
-          Resume
-        </Link>
-      </div>
+    <footer className="bg-dark-900 text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-3 gap-8 items-center">
+          {/* Logo */}
+          <div className="text-center md:text-left">
+            <h3 className="text-2xl font-bold text-primary-400 mb-2">
+              Jiregna.<span className="text-primary-300">Dev</span>
+            </h3>
+            <p className="text-gray-400 text-sm">
+              Frontend Web & Mobile App Developer
+            </p>
+          </div>
 
-      <div className="footer-socials">
-        <a
-          href="https://github.com/jiregnaworku"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <FaGithub />
-        </a>
-        <a
-          href="www.linkedin.com/in/jiregna-worku-5519302aa"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <FaLinkedin />
-        </a>
-        <a href="mailto:jiregna123w@gmail.com">
-          <FaEnvelope />
-        </a>
-        <a href="https://t.me/@jiroow" target="_blank" rel="noreferrer">
-          <FaTelegram />
-        </a>
-      </div>
+          {/* Navigation Links */}
+          <div className="text-center">
+            <div className="flex flex-wrap justify-center gap-6">
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  smooth={true}
+                  duration={500}
+                  className="text-gray-300 hover:text-primary-300 transition-colors duration-300 cursor-pointer"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
 
-      <p className="footer-copy">
-        &copy; {new Date().getFullYear()} Jiregna's Portfolio. All rights
-        reserved.
-      </p>
+          {/* Social Links */}
+          <div className="text-center md:text-right">
+            <div className="flex justify-center md:justify-end space-x-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 bg-dark-800 hover:bg-primary-600 rounded-full flex items-center justify-center text-gray-300 hover:text-white transition-all duration-300 transform hover:scale-110"
+                  aria-label={social.label}
+                >
+                  <social.icon className="text-lg" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-dark-700 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-gray-400 text-sm">
+              &copy; {new Date().getFullYear()} Jiregna Worku. All rights reserved.
+            </p>
+            <p className="text-gray-400 text-sm flex items-center">
+              Made with <FaHeart className="text-red-500 mx-1" /> using React & Tailwind CSS
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };
