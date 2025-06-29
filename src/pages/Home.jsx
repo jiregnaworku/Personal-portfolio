@@ -17,10 +17,18 @@ const Home = () => {
   ];
 
   const socialLinks = [
-    { icon: FaGithub, href: "#", label: "GitHub" },
-    { icon: FaLinkedin, href: "#", label: "LinkedIn" },
-    { icon: FaTwitter, href: "#", label: "Twitter" },
-    { icon: FaEnvelope, href: "#contact", label: "Email" },
+    {
+      icon: FaGithub,
+      href: "https://github.com/jiregnaworku",
+      label: "GitHub",
+    },
+    {
+      icon: FaLinkedin,
+      href: "https://www.linkedin.com/in/jiregna-worku-5519302aa",
+      label: "LinkedIn",
+    },
+    // { icon: FaTwitter, href: "#", label: "Twitter" },
+    { icon: FaEnvelope, href: "mailto:jiregna123w@gmail.com", label: "Email" },
   ];
 
   return (
@@ -49,7 +57,9 @@ const Home = () => {
 
             <p className="text-lg text-gray-200 leading-relaxed max-w-2xl">
               I'm a 4th-year Software Engineering student at Injibara University
-              who loves building beautiful and functional frontend websites and mobile applications using React, Node.js, and modern web technologies.
+              who loves building beautiful and functional frontend websites and
+              mobile applications using React, Node.js, and modern web
+              technologies.
             </p>
 
             <div className="flex flex-wrap gap-4">

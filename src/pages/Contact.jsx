@@ -1,6 +1,12 @@
 import React, { useRef, useState } from "react";
 import emailjs from "emailjs-com";
-import { FaGithub, FaTelegram, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaGithub,
+  FaTelegram,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 const Contact = () => {
   const form = useRef();
@@ -39,36 +45,36 @@ const Contact = () => {
       label: "Email",
       value: "jiregna123w@gmail.com",
       href: "mailto:jiregna123w@gmail.com",
-      color: "text-red-500"
+      color: "text-red-500",
     },
     {
       icon: FaPhoneAlt,
       label: "Phone",
       value: "+251 918 348 141",
       href: "tel:+251918348141",
-      color: "text-green-500"
+      color: "text-green-500",
     },
     {
       icon: FaTelegram,
       label: "Telegram",
       value: "@jiroow",
       href: "https://t.me/jiroow",
-      color: "text-blue-500"
+      color: "text-blue-500",
     },
     {
       icon: FaGithub,
       label: "GitHub",
       value: "github.com/jiregnaworku",
       href: "https://github.com/jiregnaworku",
-      color: "text-gray-800 dark:text-gray-200"
+      color: "text-gray-800 dark:text-gray-200",
     },
     {
       icon: FaMapMarkerAlt,
       label: "Location",
       value: "Addis Ababa, Ethiopia",
-      href: "#",
-      color: "text-purple-500"
-    }
+      href: "https://googlemaps.com/addis abeba",
+      color: "text-purple-500",
+    },
   ];
 
   return (
@@ -80,8 +86,8 @@ const Contact = () => {
           </h2>
           <div className="w-24 h-1 bg-primary-200 mx-auto rounded-full mb-8"></div>
           <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-            I'm always open to discussing new opportunities, interesting projects, 
-            or just having a chat about technology and development.
+            I'm always open to discussing new opportunities, interesting
+            projects, or just having a chat about technology and development.
           </p>
         </div>
 
@@ -89,9 +95,12 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Let's Connect
+              </h3>
               <p className="text-primary-100 text-lg leading-relaxed mb-8">
-                Feel free to reach out through any of these channels. I typically respond within 24 hours.
+                Feel free to reach out through any of these channels. I
+                typically respond within 24 hours.
               </p>
             </div>
 
@@ -100,15 +109,21 @@ const Contact = () => {
                 <a
                   key={index}
                   href={info.href}
-                  target={info.href.startsWith('http') ? "_blank" : "_self"}
-                  rel={info.href.startsWith('http') ? "noopener noreferrer" : ""}
+                  target={info.href.startsWith("http") ? "_blank" : "_self"}
+                  rel={
+                    info.href.startsWith("http") ? "noopener noreferrer" : ""
+                  }
                   className="flex items-center space-x-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 group"
                 >
-                  <div className={`p-3 bg-white/20 rounded-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`p-3 bg-white/20 rounded-lg group-hover:scale-110 transition-transform duration-300`}
+                  >
                     <info.icon className={`text-2xl ${info.color}`} />
                   </div>
                   <div>
-                    <p className="text-primary-200 text-sm font-medium">{info.label}</p>
+                    <p className="text-primary-200 text-sm font-medium">
+                      {info.label}
+                    </p>
                     <p className="text-white font-semibold">{info.value}</p>
                   </div>
                 </a>
@@ -119,22 +134,30 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
             <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
-            
+
             {submitStatus === "success" && (
               <div className="mb-6 p-4 bg-green-500/20 border border-green-400 rounded-lg">
-                <p className="text-green-200">Message sent successfully! I'll get back to you soon.</p>
+                <p className="text-green-200">
+                  Message sent successfully! I'll get back to you soon, Thanks
+                  Jiregna w.
+                </p>
               </div>
             )}
-            
+
             {submitStatus === "error" && (
               <div className="mb-6 p-4 bg-red-500/20 border border-red-400 rounded-lg">
-                <p className="text-red-200">Failed to send message. Please try again.</p>
+                <p className="text-red-200">
+                  Failed to send message. Please try again.
+                </p>
               </div>
             )}
 
             <form ref={form} onSubmit={sendEmail} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-primary-200 text-sm font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-primary-200 text-sm font-medium mb-2"
+                >
                   Your Name
                 </label>
                 <input
@@ -148,7 +171,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-primary-200 text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-primary-200 text-sm font-medium mb-2"
+                >
                   Your Email
                 </label>
                 <input
@@ -162,7 +188,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-primary-200 text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-primary-200 text-sm font-medium mb-2"
+                >
                   Your Message
                 </label>
                 <textarea

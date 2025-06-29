@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-scroll";
-import { FaGithub, FaLinkedin, FaEnvelope, FaTelegram, FaHeart } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaTelegram,
+  FaHeart,
+} from "react-icons/fa";
 
 const Footer = () => {
   const footerLinks = [
@@ -15,23 +21,23 @@ const Footer = () => {
     {
       href: "https://github.com/jiregnaworku",
       icon: FaGithub,
-      label: "GitHub"
+      label: "GitHub",
     },
     {
       href: "https://www.linkedin.com/in/jiregna-worku-5519302aa",
       icon: FaLinkedin,
-      label: "LinkedIn"
+      label: "LinkedIn",
     },
     {
       href: "mailto:jiregna123w@gmail.com",
       icon: FaEnvelope,
-      label: "Email"
+      label: "Email",
     },
     {
       href: "https://t.me/jiroow",
       icon: FaTelegram,
-      label: "Telegram"
-    }
+      label: "Telegram",
+    },
   ];
 
   return (
@@ -88,10 +94,12 @@ const Footer = () => {
         <div className="border-t border-dark-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} Jiregna Worku. All rights reserved.
+              &copy; {new Date().getFullYear()} Jiregna Worku. All rights
+              reserved.
             </p>
             <p className="text-gray-400 text-sm flex items-center">
-              Made with <FaHeart className="text-red-500 mx-1" /> using React & Tailwind CSS
+              Made with <FaHeart className="text-red-500 mx-1" /> using React &
+              Tailwind CSS by Jiregna Worku.
             </p>
           </div>
         </div>
