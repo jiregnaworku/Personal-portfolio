@@ -13,7 +13,7 @@ const Chatbot = () => {
     },
   ]);
   const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  // Removed unused isTyping state
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -145,9 +145,9 @@ Be concise and helpful. If you don't know the answer, say so.\n\n` +
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
-        isOpen ? "w-96 h-[500px]" : "w-16 h-16"
-      }`}
+      className={`fixed bottom-6 right-6 z-50 transition-all duration-300
+        ${isOpen ? "w-full max-w-md h-[70vh]" : "w-16 h-16"}
+        sm:${isOpen ? "w-96 h-[500px]" : "w-16 h-16"}`}
     >
       {isOpen ? (
         <div className="w-full h-full bg-white dark:bg-dark-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-dark-700 flex flex-col">
@@ -157,6 +157,7 @@ Be concise and helpful. If you don't know the answer, say so.\n\n` +
             <button
               onClick={toggleChat}
               className="p-2 hover:bg-primary-700 rounded-lg transition-colors duration-200"
+              aria-label="Close chat"
             >
               <IoMdClose size={20} />
             </button>
@@ -196,13 +197,15 @@ Be concise and helpful. If you don't know the answer, say so.\n\n` +
                       }`}
                     >
                       <div
-                        className={`rounded-2xl px-4 py-3 max-w-xs ${
+                        className={`rounded-2xl px-4 py-3 max-w-xs break-words ${
                           message.sender === "user"
                             ? "bg-primary-600 text-white"
                             : "bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-gray-100"
                         }`}
                       >
-                        <div className="text-sm">{message.text}</div>
+                        <div className="text-sm whitespace-pre-wrap">
+                          {message.text}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -230,6 +233,7 @@ Be concise and helpful. If you don't know the answer, say so.\n\n` +
               <button
                 type="submit"
                 className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                aria-label="Send message"
               >
                 <IoSend size={18} />
               </button>
@@ -240,6 +244,7 @@ Be concise and helpful. If you don't know the answer, say so.\n\n` +
         <button
           onClick={toggleChat}
           className="w-16 h-16 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
+          aria-label="Open chat"
         >
           <FaRobot size={24} />
         </button>
