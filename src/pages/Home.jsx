@@ -1,6 +1,7 @@
 import React from "react";
 import profilePic from "../assets/profile.png";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import Chatbot from '../components/Chatbot/Chatbot';
 
 const Home = () => {
   const techStack = [
@@ -124,6 +125,7 @@ const Home = () => {
             ))}
           </div>
         </div>
+        <Chatbot />
       </div>
     </div>
   );

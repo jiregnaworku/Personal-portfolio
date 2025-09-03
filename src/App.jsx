@@ -6,7 +6,6 @@ import Contact from "./pages/Contact";
 import Project from "./pages/Projects";
 import Resume from "./pages/Resume";
 import Footer from "./components/Footer";
-import Chatbot from "./components/Chatbot/Chatbot";
 
 const App = () => {
   return (
@@ -30,7 +29,6 @@ const App = () => {
         </section>
         <Footer />
       </main>
-      <Chatbot />
     </>
   );
 };
