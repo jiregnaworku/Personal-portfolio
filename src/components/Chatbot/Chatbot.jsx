@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaRobot } from "react-icons/fa";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,15 +22,15 @@ const Chatbot = () => {
       "Who am I?":
         "I'm Jiregna Worku, a 4th-year Software Engineering student at Injibara University...",
       "What do I do?":
-        "I build modern, scalable web and mobile applications with React, Next.js, Flutter, NestJS, etc.",
+        "I build modern, scalable web and mobile applications with React, Next.js, Flutter, NestJS, etc...",
       "Skills?":
-        "Frontend: React, NextJs, JS. Backend: Node.js, Express, NestJS. Mobile: React Native, Flutter.",
+        "Frontend: ReactJS, NextJs, JS, HTML & CSS and more related popular frameworks. Backend: Node.js, Express, NestJS. Mobile: React Native, Flutter.",
       "Achievements?":
-        "Built apps like Online Coffee Shop and Kids Learning App.",
+        "Built Website's and Apps like Online Coffee Shop and Kids Learning App.",
     },
     Projects: {
       "Latest Project?": "My portfolio website — including this chatbot.",
-      "Upcoming Projects?": "An AI-driven House rental system (web + mobile).",
+      "Upcoming Projects?": "An House rental system (web + mobile).",
       "Completed Projects?":
         "3+ apps including Coffee Shop, Kids Learning, and chatbot projects.",
     },
@@ -204,7 +204,7 @@ const Chatbot = () => {
             {/* Header */}
             <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white flex justify-between items-center p-4 rounded-t-2xl shadow">
               <span className="font-semibold text-lg">
-                🤖 Jiregna’s Chatbot
+                🤖 Jiregna’s Assistant bot
               </span>
               <div className="flex gap-2">
                 <button
