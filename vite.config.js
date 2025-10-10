@@ -5,15 +5,15 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ command, mode }) => {
   // Load env file based on `mode` in the current working directory.
   const env = loadEnv(mode, process.cwd(), '');
-  
+
   return {
     base: "/Personal-portfolio/",
     plugins: [react()],
-    // Explicitly define the global constant
+    // Make environment variables available to the client
     define: {
       'process.env': {}
     },
-    // Make environment variables available to the client
+    // Expose environment variables that start with VITE_
     server: {
       port: 3000,
     },
