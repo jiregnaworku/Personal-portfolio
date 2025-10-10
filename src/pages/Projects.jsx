@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FaGithub, FaExternalLinkAlt, FaStar, FaSpinner, FaExclamationTriangle } from "react-icons/fa";
+import apiService from "../api";
 
-// Base API URL
-const API_BASE = "http://localhost:5000";
+// Base API URL from environment variable
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -15,10 +16,7 @@ const Projects = () => {
         setLoading(true);
         setError(null);
 
-        const response = await fetch('http://localhost:5000/api/projects');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-        const data = await response.json();
+        const data = await apiService.get('/api/projects');
         setProjects(data);
       } catch (err) {
         console.error('Error fetching projects:', err);

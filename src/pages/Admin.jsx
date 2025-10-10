@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import apiService from "../api";
 
-// Base API URL
-const API_BASE = "http://localhost:5000";
+// Base API URL from environment variable
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function Admin() {
   const [token, setToken] = useState("");
