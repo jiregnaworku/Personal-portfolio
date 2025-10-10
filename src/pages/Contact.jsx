@@ -45,47 +45,47 @@ const Contact = () => {
       label: "Email",
       value: "jiregna123w@gmail.com",
       href: "mailto:jiregna123w@gmail.com",
-      color: "text-red-500",
+      color: "text-red-400",
     },
     {
       icon: FaPhoneAlt,
       label: "Phone",
       value: "+251 918 348 141",
       href: "tel:+251918348141",
-      color: "text-green-500",
+      color: "text-green-400",
     },
     {
       icon: FaTelegram,
       label: "Telegram",
       value: "@jiroow",
       href: "https://t.me/jiroow",
-      color: "text-blue-500",
+      color: "text-blue-400",
     },
     {
       icon: FaGithub,
       label: "GitHub",
       value: "github.com/jiregnaworku",
       href: "https://github.com/jiregnaworku",
-      color: "text-gray-800 dark:text-gray-200",
+      color: "text-gray-200",
     },
     {
       icon: FaMapMarkerAlt,
       label: "Location",
       value: "Addis Ababa, Ethiopia",
-      href: "https://googlemaps.com/addis abeba",
-      color: "text-purple-500",
+      href: "https://google.com/maps",
+      color: "text-purple-400",
     },
   ];
 
   return (
-    <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 py-20">
+    <div className="bg-gradient-to-br from-blue-900 via-black to-blue-700 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Get In <span className="text-primary-200">Touch</span>
+            Get In <span className="text-blue-300">Touch</span>
           </h2>
-          <div className="w-24 h-1 bg-primary-200 mx-auto rounded-full mb-8"></div>
-          <p className="text-xl text-primary-100 max-w-3xl mx-auto">
+          <div className="w-24 h-1 bg-blue-300 mx-auto rounded-full mb-8"></div>
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
             I'm always open to discussing new opportunities, interesting
             projects, or just having a chat about technology and development.
           </p>
@@ -98,7 +98,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-white mb-6">
                 Let's Connect
               </h3>
-              <p className="text-primary-100 text-lg leading-relaxed mb-8">
+              <p className="text-blue-100 text-lg leading-relaxed mb-8">
                 Feel free to reach out through any of these channels. I
                 typically respond within 24 hours.
               </p>
@@ -121,9 +121,7 @@ const Contact = () => {
                     <info.icon className={`text-2xl ${info.color}`} />
                   </div>
                   <div>
-                    <p className="text-primary-200 text-sm font-medium">
-                      {info.label}
-                    </p>
+                    <p className="text-blue-300 text-sm font-medium">{info.label}</p>
                     <p className="text-white font-semibold">{info.value}</p>
                   </div>
                 </a>
@@ -139,7 +137,7 @@ const Contact = () => {
               <div className="mb-6 p-4 bg-green-500/20 border border-green-400 rounded-lg">
                 <p className="text-green-200">
                   Message sent successfully! I'll get back to you soon, Thanks
-                  Jiregna w.
+                  Jiregna W.
                 </p>
               </div>
             )}
@@ -156,7 +154,7 @@ const Contact = () => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-primary-200 text-sm font-medium mb-2"
+                  className="block text-blue-300 text-sm font-medium mb-2"
                 >
                   Your Name
                 </label>
@@ -165,7 +163,7 @@ const Contact = () => {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
                   placeholder="Enter your name"
                 />
               </div>
@@ -173,7 +171,7 @@ const Contact = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-primary-200 text-sm font-medium mb-2"
+                  className="block text-blue-300 text-sm font-medium mb-2"
                 >
                   Your Email
                 </label>
@@ -182,7 +180,7 @@ const Contact = () => {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
                   placeholder="Enter your email"
                 />
               </div>
@@ -190,7 +188,7 @@ const Contact = () => {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-primary-200 text-sm font-medium mb-2"
+                  className="block text-blue-300 text-sm font-medium mb-2"
                 >
                   Your Message
                 </label>
@@ -199,7 +197,7 @@ const Contact = () => {
                   name="message"
                   rows="5"
                   required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 resize-none"
                   placeholder="Tell me about your project or just say hello!"
                 />
               </div>
@@ -207,7 +205,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-primary-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600"
+                className="w-full px-8 py-4 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
