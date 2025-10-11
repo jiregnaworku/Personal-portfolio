@@ -6,7 +6,7 @@ import Contact from "./pages/Contact";
 import Project from "./pages/Projects";
 import Resume from "./pages/Resume";
 import Footer from "./components/Footer";
-import Admin from "./pages/Admin";
+import Admin from "./pages/admin/Admin";
 
 const AppContent = () => {
   const location = useLocation();
