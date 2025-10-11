@@ -9,6 +9,7 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -92,7 +93,7 @@ const Projects = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sortedProjects.map((project) => (
+          {(showAllProjects ? sortedProjects : sortedProjects.slice(0, 3)).map((project) => (
             <div
               key={project._id || project.title}
               className={`group bg-white/10 backdrop-blur-md rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-white/20 overflow-hidden ${
@@ -182,6 +183,34 @@ const Projects = () => {
             </div>
           ))}
         </div>
+
+        {projects.length > 3 && !showAllProjects && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setShowAllProjects(true)}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2 mx-auto"
+            >
+              <span>See More</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        )}
+
+        {showAllProjects && projects.length > 3 && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setShowAllProjects(false)}
+              className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2 mx-auto"
+            >
+              <span>Show Less</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
 
         {projects.length === 0 && !loading && !error && (
           <div className="text-center py-20">
