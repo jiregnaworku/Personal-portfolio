@@ -94,7 +94,7 @@ export default function Dashboard({ token, onLogout }) {
     }
   };
 
-  const editProject = (p) => setForm({ ...p });
+  const editProject = (p) => setForm({ ...p, images: p.images || [] });
   const resetForm = () =>
     setForm({
       _id: null,
@@ -111,7 +111,7 @@ export default function Dashboard({ token, onLogout }) {
 
   const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
-    if (file) setForm((f) => ({ ...f, images: [file] }));
+    if (file) setForm((f) => ({ ...f, images: f.images ? [file] : [file] }));
   };
 
   return (
@@ -191,7 +191,7 @@ export default function Dashboard({ token, onLogout }) {
             <label className="flex flex-col items-center justify-center border-2 border-dashed border-white/20 rounded-lg p-6 cursor-pointer hover:bg-white/5 transition-all">
               <ImageIcon size={22} className="mb-2 text-blue-300" />
               <span className="text-sm text-gray-300">
-                {form.images.length > 0
+                {form.images && form.images.length > 0
                   ? form.images[0].name
                   : "Click to upload image"}
               </span>
