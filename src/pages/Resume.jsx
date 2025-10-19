@@ -8,6 +8,26 @@ import {
 } from "react-icons/fa";
 
 const Resume = () => {
+  const handleDownload = async () => {
+    try {
+      const response = await fetch('/Jiregna_Worku_Resume.pdf');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'Jiregna_Worku_Resume.pdf';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Download failed:', error);
+      // Fallback to direct link if fetch fails
+      window.open('/Jiregna_Worku_Resume.pdf', '_blank');
+    }
+  };
+
   return (
     <div className="bg-gradient-to-br from-blue-900 via-black to-blue-700 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -147,14 +167,13 @@ const Resume = () => {
 
             {/* Download Button */}
             <div className="text-center">
-              <a
-                href="/assets/Jiregna_Worku_Resume.pdf"
-                download
+              <button
+                onClick={handleDownload}
                 className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
               >
                 <FaDownload className="mr-3 text-lg" />
                 Download Resume (PDF)
-              </a>
+              </button>
             </div>
           </div>
         </div>
