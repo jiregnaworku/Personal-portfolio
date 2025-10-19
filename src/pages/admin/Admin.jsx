@@ -40,41 +40,41 @@ export default function Admin() {
         animate={{ y: 0, opacity: 1 }}
         className="backdrop-blur-xl bg-white/10 border-b border-white/20"
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-          <h1 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 py-3 sm:py-4 gap-3 sm:gap-0">
+          <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text">
             ⚙️ Admin Control Center
           </h1>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
             <button
               onClick={() => setCurrentView("dashboard")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg font-medium transition-all text-sm sm:text-base ${
                 currentView === "dashboard"
                   ? "bg-blue-600 text-white shadow-lg"
                   : "text-gray-300 hover:bg-white/10"
               }`}
             >
-              <LayoutDashboard size={18} />
-              Dashboard
+              <LayoutDashboard size={16} />
+              <span className="hidden sm:inline">Dashboard</span>
             </button>
 
             <button
               onClick={() => setCurrentView("manageAdmins")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg font-medium transition-all text-sm sm:text-base ${
                 currentView === "manageAdmins"
                   ? "bg-blue-600 text-white shadow-lg"
                   : "text-gray-300 hover:bg-white/10"
               }`}
             >
-              <Users2 size={18} />
-              Manage Admins
+              <Users2 size={16} />
+              <span className="hidden sm:inline">Manage Admins</span>
             </button>
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-semibold transition-all"
+              className="flex items-center gap-1 sm:gap-2 bg-red-600 hover:bg-red-700 px-3 sm:px-4 py-2 rounded-lg font-semibold transition-all text-sm sm:text-base"
             >
-              <LogOut size={18} />
+              <LogOut size={16} />
               Logout
             </button>
           </div>
