@@ -72,7 +72,7 @@ export default function Dashboard({ token, onLogout }) {
         }
       }
 
-      const method = form._id ? "PATCH" : "POST";
+      const method = form._id ? "PUT" : "POST";
       const url = form._id
         ? `${API_BASE}/api/projects/${form._id}`
         : `${API_BASE}/api/projects`;
