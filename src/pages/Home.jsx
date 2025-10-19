@@ -25,7 +25,7 @@ const Home = () => {
     },
     {
       icon: FaLinkedin,
-      href: "https://www.linkedin.com/in/jiregna-worku-5519302aa",
+      href: "https://www.linkedin.com/in/jiregna-worku/",
       label: "LinkedIn",
     },
     { icon: FaEnvelope, href: "mailto:jiregna123w@gmail.com", label: "Email" },

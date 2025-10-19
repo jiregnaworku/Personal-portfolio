@@ -62,7 +62,7 @@ const About = () => {
     {
       name: "Education",
       icon: FaGraduationCap,
-      description: "4th-year Software Engineering student",
+      description: "5th-year Software Engineering student",
     },
     {
       name: "Problem Solving",
@@ -96,7 +96,7 @@ const About = () => {
               <h3 className="text-2xl font-bold text-white mb-6">Who I Am</h3>
               <div className="space-y-4 text-blue-200 leading-relaxed">
                 <p>
-                  I'm Jiregna Worku, a 4th-year Software Engineering student at
+                  I'm Jiregna Worku, a 5th-year Software Engineering student at
                   Injibara University. I specialize in creating visually
                   appealing and user-friendly web and mobile applications. With
                   a strong foundation in React, JavaScript, Node.js, and modern
